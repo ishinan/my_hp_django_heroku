@@ -22,4 +22,5 @@ urlpatterns = [
     path('blog/', include('blog.urls')),
     path('projects/', include('projects.urls')),
     path('contact-me/', include('contact_me.urls')),
+    path('api-github/', include('api_github.urls')),
 ]

@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'blog',
     'contact_me',
     'projects',
+    'home',
+    'api_github',
 ]
 
 MIDDLEWARE = [
