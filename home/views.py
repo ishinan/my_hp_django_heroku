@@ -1,12 +1,10 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 import datetime
 import markdown
 
 
 # Create your views here.
 def home(request):
-    #return HttpResponse('<h1>Home</h1>')
     copyright_year = _get_current_year()
     meta_data = {}
     content, meta_data = _read_md_file('home/content/index.md')

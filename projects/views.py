@@ -1,9 +1,10 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-
+from home.views import _get_current_year, _read_md_file
 
 # Create your views here.
 def projects(request):
-    #return HttpResponse('<h1>Projects</h1>')
-    context = {}
-    return render(request, 'home/base.html', context)
+    copyright_year = _get_current_year()
+    context = {
+        'copyright_year': copyright_year,
+    }
+    return render(request, 'projects/projects.html', context)
