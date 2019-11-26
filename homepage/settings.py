@@ -75,6 +75,13 @@ TEMPLATES = [
             'environment': 'blog.jinja2.environment',
             'environment': 'contact_me.jinja2.environment',
             'environment': 'api_github.jinja2.environment',
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+                'homepage.context_processor.get_nav_links',
+            ],
         },
     },
     {
@@ -87,6 +94,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'homepage.context_processor.get_nav_links',
             ],
         },
     },
@@ -146,4 +154,14 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "homepage", "static"),
+]
+
+# Custom NAV_LIST
+
+DATA_NAV_LIST  = [
+    {'href': 'home:home', 'title': 'Home'},
+    {'href': 'projects:projects', 'title': 'Projects'},
+    {'href': 'blog:blog', 'title': 'Blog'},
+    {'href': 'api-github:get_repo', 'title': 'Github Repo'},
+    {'href': 'contact_me:contact_me', 'title': 'Contact'},
 ]
