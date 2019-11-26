@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> 
-    <link rel="stylesheet" href="css/shared.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/blog.css">
-    <link rel="stylesheet" href="css/projects.css">
-    <link rel="stylesheet" href="css/contact.css">
-    <link rel="stylesheet" href="css/codehilite.css">
+    <link rel="stylesheet" href="{{ static('css/shared.css') }}">
+    <link rel="stylesheet" href="{{ static('css/main.css') }}">
+    <link rel="stylesheet" href="{{ static('css/blog.css') }}">
+    <link rel="stylesheet" href="{{ static('css/projects.css') }}">
+    <link rel="stylesheet" href="{{ static('css/contact.css') }}">
+    <link rel="stylesheet" href="{{ static('css/codehilite.css') }}">
     <title>Masa's {{ title }} Page</title>
     <script>
       function myFunction() {
@@ -24,7 +24,7 @@
         <!-- Header/Nav -->
         <div class="row header">
             <div class="col">
-                <img onclick="myFunction()" src="images/logo_masayana_small_60.png" alt="Logo_MasaYana">
+                <img onclick="myFunction()" src="{{ static('images/logo_masayana_small_60.png') }}" alt="Logo_MasaYana">
             </div>
             <div class="col">
                 <ul class="nav nav-pills" id="bottom" >
