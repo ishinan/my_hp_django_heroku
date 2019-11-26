@@ -6,4 +6,4 @@ from django.http import HttpResponse
 def projects(request):
     #return HttpResponse('<h1>Projects</h1>')
     context = {}
-    return render(request, 'projects/base.html', context)
+    return render(request, 'home/base.html', context)

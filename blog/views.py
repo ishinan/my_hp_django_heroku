@@ -6,4 +6,4 @@ from django.http import HttpResponse
 def blogs(request):
     #return HttpResponse('<h1>Blogs</h1>')
     context = {}
-    return render(request, 'blog/base.html', context)
+    return render(request, 'home/base.html', context)
