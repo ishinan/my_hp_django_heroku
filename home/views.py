@@ -1,17 +1,54 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 import datetime
+import markdown
 
 
 # Create your views here.
 def home(request):
     #return HttpResponse('<h1>Home</h1>')
     copyright_year = _get_current_year()
-    context = { 'copyright_year': copyright_year  }
-    return render(request, 'home/base.html', context)
+    meta_data = {}
+    content, meta_data = _read_md_file('home/content/index.md')
+    context = { 
+                'copyright_year': copyright_year,
+                'title': meta_data['title'][0],
+                'content': content,
+              }
+    return render(request, 'home/index.html', context)
 
 
 # Helpers
+def _read_md_file(file_path):
+    '''
+    Read a md exntention file and return its content and metadata
+
+    parameter: 
+        file_path
+    return: 
+        a list of conetent and metadata dict 
+            - Note that metadata value is a list
+            - Example: 
+                [ 'html string', 
+                  { 'key': [ 'value', ], 
+                    'key': [ 'value' ],
+                  },
+                ]
+    '''
+    if file_path.endswith('.md'):
+        with open(file_path , 'r') as f:
+            content_of_md_file = f.read()
+            md = markdown.Markdown(extensions=['meta', 'fenced_code', 'codehilite'])
+            html_of_md_file = md.convert(content_of_md_file)
+            dict_of_md_meta_data = md.Meta
+            return [ html_of_md_file, 
+                     dict_of_md_meta_data,
+                   ]
+
+    return [ "Could not find a md file" + file_path, {}, ]
+
+
+
 def _get_current_datetime():
     '''
     Get date/time info(year, month, date, hour, min) from datetime module
