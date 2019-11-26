@@ -1,5 +1,6 @@
-{% extends "base.html" %}
-{% block each_blog_base %}
+{% extends "home/base.html" %}
+
+{% block page_content %}
 <div class="jumbotron jumbotron-project jbtron_in_blog" style="background-image: url('{{ blog_page.image_alt[0] }}');">
   <h1>{{ blog_page.subject[0] }}</h1>
   <p>{{ blog_page.short_summary[0]|truncate(80) }}</p>
