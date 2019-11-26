@@ -1,5 +1,9 @@
 {% extends "home/base.html" %}
 
+{% block title %}
+Blog Detail
+{% endblock %}
+
 {% block page_content %}
 <div class="jumbotron jumbotron-project jbtron_in_blog" style="background-image: url('{{ blog_page.image_alt[0] }}');">
   <h1>{{ blog_page.subject[0] }}</h1>
