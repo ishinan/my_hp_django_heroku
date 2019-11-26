@@ -6,7 +6,7 @@
   <p>{{ blog_page.short_summary[0]|truncate(80) }}</p>
 </div>
   <div class="media">
-    <img class="mr-3 media_image_in_blog" src="{{ blog_page.image[0] }}" alt="{{ blog_page.image_alt[0] }}">
+    <img class="mr-3 media_image_in_blog" src="{{ static(blog_page.image[0]) }}" alt="{{ blog_page.image_alt[0] }}">
     <div class="media-body">
     <h4>{{ blog_page.subject[0] }}</h4>
     <h5>{{ blog_page.created_date[0] }}</h5>

@@ -1,4 +1,5 @@
 from django.shortcuts import render
+import os
 import datetime
 import markdown
 
@@ -17,6 +18,41 @@ def home(request):
 
 
 # Helpers
+def _create_page_list(content_dir='content', content_type='md'):
+    '''
+    This is a generator.
+    Read a list of content html files under a content directory
+    Return a dict of content path, target path, title, html name(without html extention)
+    
+    An example of a dictionary:
+    {
+        'content_path': 'content/index.md',
+        'file_name': 'index,
+        'html_name': 'index.html',
+    }
+
+    parameters:
+        content_dir: default: 'content'
+        content_type: file exntension: .md or .html (default: md)
+    return:
+        a dictionary of 
+            'content_path', 
+            'file_name', 
+            'html_name'
+    '''
+    for curr_dir, list_dirs, list_files in os.walk(content_dir):
+        for content_file in filter(lambda fname: fname.endswith(content_type), list_files):
+            content_path = os.path.join(curr_dir, content_file)
+            content_file_name, ext = os.path.splitext(content_file)
+            target_file_name = content_file_name + ".html"
+
+            yield {
+                    'content_path': content_path,
+                    'file_name': content_file_name,
+                    'html_name': target_file_name,
+                  }
+
+
 def _read_md_file(file_path):
     '''
     Read a md exntention file and return its content and metadata

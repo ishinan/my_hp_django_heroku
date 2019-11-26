@@ -12,7 +12,7 @@
             <div class="carousel-inner" role="listbox">
               {% for blog_section in blog_sections -%}
               <div class="carousel-item {% if loop.first %}active{% endif %}">
-                <img class="d-block w-100" src="{{ blog_section.image[0] }}" alt="{{ blog_section.image_alt[0] }}">
+                <img class="d-block w-100" src="{{ static(blog_section.image[0]) }}" alt="{{ blog_section.image_alt[0] }}">
                   <div class="carousel-caption summary_subject">
                     <h4>{{ blog_section.subject[0] }}</h4>
                     <p>Here comes a short message.</p>
@@ -33,7 +33,7 @@
 {% for blog_section in blog_sections -%}
 <div class="row main">
   <div class="media">
-    <img class="mr-3 media_image" src="{{ blog_section.image[0] }}" alt="{{ blog_section.image_alt[0] }}">
+    <img class="mr-3 media_image" src="{{ static(blog_section.image[0]) }}" alt="{{ blog_section.image_alt[0] }}">
     <div class="media-body">
         <a href="{{ blog_section.html_name }}"><h4>{{ blog_section.subject[0] }}</h4></a>
         <h5>{{ blog_section.created_date[0] }}</h5>
