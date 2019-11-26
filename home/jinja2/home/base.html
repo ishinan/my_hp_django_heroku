@@ -30,7 +30,7 @@
                 <ul class="nav nav-pills" id="bottom" >
                     {%- for navlink in navlinks -%}
                         <li class="nav-item">
-                            <a class="nav-link {% if navlink.filename  == outputfile %}active{% endif %}" href="{{ navlink.filename }}">{{ navlink.title }}</a>
+                            <a class="nav-link {% if navlink.href %}active{% endif %}" href="{{ url(navlink.href) }}">{{ navlink.title }}</a>
                         </li>
                     {% endfor -%}
                 </ul>
@@ -38,13 +38,8 @@
        </div> 
        <!-- Template: top: end -->
 
-{% if outputfile == 'blog.html' %}
-{% block blog_content %}{% endblock %}
-{% elif source_path == 'blog' %}
-{% block each_blog_base %}{% endblock %}
-{% else %}
-{{ page_content }}
-{% endif %}
+{% block page_content %}
+{% endblock %}
         <!-- Template: bottom: start --> 
         <!-- Footer -->
         <div class="row">
