@@ -60,6 +60,24 @@ ROOT_URLCONF = 'homepage.urls'
 
 TEMPLATES = [
     {
+        'BACKEND': 'django.template.backends.jinja2.Jinja2',
+        'DIRS': [
+             os.path.join(BASE_DIR, 'home/jinja2'),
+             os.path.join(BASE_DIR, 'projects/jinja2'),
+             os.path.join(BASE_DIR, 'blog/jinja2'),
+             os.path.join(BASE_DIR, 'contact_me/jinja2'),
+             os.path.join(BASE_DIR, 'api_github/jinja2'),
+        ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'environment': 'home.jinja2.environment',
+            'environment': 'projects.jinja2.environment',
+            'environment': 'blog.jinja2.environment',
+            'environment': 'contact_me.jinja2.environment',
+            'environment': 'api_github.jinja2.environment',
+        },
+    },
+    {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
         'APP_DIRS': True,
