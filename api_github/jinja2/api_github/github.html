@@ -14,7 +14,7 @@ Github Repo
             <h1>My github repos</h1>
             <ol>
             {% for repo in github_repos %}
-                <li><a href="{{ repo.html_url }}">{{ repo.name }}</a></li>
+                <li><a href="{{ repo.html_url }}">{{ repo.name }}</a>: <span><small>(Last Update: {{ repo.updated_at }} )</small></span></li>
             {% endfor %}
             </ol>
         </div>
