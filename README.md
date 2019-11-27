@@ -1,8 +1,12 @@
 # my_hp_django_heroku
-A project home page hosted in heroku using django server.
 
+- A project home page hosted in heroku using django server.
+- Two APIs were implemented; 
+  1. GitHub api to retrieve my repo list
+  2. Mailgun to email a message to me
 
 ## Structure
+
 ```text
 .
 ├── Pipfile
