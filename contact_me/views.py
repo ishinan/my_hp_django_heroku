@@ -24,26 +24,52 @@ def contact_me(request):
 
 
 def send_email(request):
-    to_name = request.POST['name']
-    to_email = request.POST['email']
-    message = request.POST['message']
-    to_name_email = [ f"{to_name} <{to_email}>" ]
+    if request.method == "POST":
+        user_name = request.POST['name']
+        user_email = request.POST['email']
+        user_message = request.POST['message']
+        user_name_email = [ f"{user_name} <{user_email}>" ]
 
-    response = _send_simple_message(to_list=to_name_email, message=message )
-    print(f"Mailgun: Status: {response.status_code} ")
-    print(f"Mailgun: Body: {response.text} ")
+        # 1. Send the message to me
+        response_of_sending_to_me = _send_simple_message(message=user_message )
+        print(f"1. Mailgun: Status: {response_of_sending_to_me.status_code} ")
+        print(f"2. Mailgun: Body: {response_of_sending_to_me.text} ")
+        print(f"-------------------------------")
+
+        # 2. Send a thank-you message to the user
+        my_name = os.getenv('MY_NAME') 
+        message_to_user = f"""
+        Thank you for sending a mesage to me, {user_name}! 
+        Hope you have a great day!
+
+        Regards,
+        {my_name}
+        """
+        response_of_sending_to_user = _send_simple_message(to_list=user_name_email, message=message_to_user)
+        print(f"3. Mailgun: Status: {response_of_sending_to_user.status_code} ")
+        print(f"4. Mailgun: Body: {response_of_sending_to_user.text} ")
 
     return redirect("/contact-me")
 
 
-def _send_simple_message(to_list=[], subject=None, message="" ):
+def _send_simple_message(to_list=[], sender_email=None, subject=None, message="" ):
     MAILGUN_API_KEY = os.getenv('MAILGUN_API_KEY')
     MAILGUN_DOMAIN = os.getenv('MAILGUN_DOMAIN') 
     MY_EMAIL = os.getenv('MY_EMAIL') 
 
-    sender_email_name = "MasaMasa"
-    from_email = f"{sender_email_name} <postmaster@{MAILGUN_DOMAIN}>"
-    to_list_emails = [ MY_EMAIL ] + to_list
+    # Sender
+    if sender_email:
+        from_email = sender_email 
+    else:
+        sender_email_name = "Masa Yana"
+        from_email = f"{sender_email_name} <postmaster@{MAILGUN_DOMAIN}>"
+
+    # Recipients
+    if len(to_list) > 0:
+        to_list_emails = [ MY_EMAIL ] + to_list
+    else:
+        to_list_emails = [ MY_EMAIL ] 
+
     subject = message if message else f"Message from my heroku websiste: contact me"
     text = f"{message}"
 
