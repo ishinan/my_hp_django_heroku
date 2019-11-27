@@ -11,6 +11,7 @@ django = "*"
 requests = "*"
 jinja2 = "*"
 markdown = "*"
+python-dotenv = "*"
 
 [requires]
 python_version = "3.7"
