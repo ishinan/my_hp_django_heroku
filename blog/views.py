@@ -6,12 +6,15 @@ from home.views import (
     _create_page_list,
 )
 
+active_page = 'blog:blog'
+
 # Create your views here.
 def blog(request):
     copyright_year = _get_current_year()
     list_blog_pages = [ page for page in _create_page_list(content_dir='blog/content/blog', content_type='md') ]
     list_blog_metadata = _create_blog_metadata_list(blog_page_list=list_blog_pages)
     context = { 
+        'active_page': active_page,
         'blog_sections': list_blog_metadata,
         'copyright_year': copyright_year,
     }

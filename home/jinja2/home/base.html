@@ -30,7 +30,7 @@
                 <ul class="nav nav-pills" id="bottom" >
                     {%- for navlink in navlinks -%}
                         <li class="nav-item">
-                            <a class="nav-link {% if navlink.href %}active{% endif %}" href="{{ url(navlink.href) }}">{{ navlink.title }}</a>
+                            <a class="nav-link {% if navlink.href == active_page %}active{% endif %}" href="{{ url(navlink.href) }}">{{ navlink.title }}</a>
                         </li>
                     {% endfor -%}
                 </ul>

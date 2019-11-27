@@ -3,6 +3,7 @@ import os
 import datetime
 import markdown
 
+active_page = 'home:home'
 
 # Create your views here.
 def home(request):
@@ -10,6 +11,7 @@ def home(request):
     meta_data = {}
     content, meta_data = _read_md_file('home/content/index.md')
     context = { 
+                'active_page': active_page,
                 'copyright_year': copyright_year,
                 'title': meta_data['title'][0],
                 'content': content,
