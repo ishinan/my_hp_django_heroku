@@ -33,7 +33,7 @@ def send_email(request):
     print(f"Mailgun: Status: {response.status_code} ")
     print(f"Mailgun: Body: {response.text} ")
 
-    return redirect("/")
+    return redirect("/contact-me")
 
 
 def _send_simple_message(to_list=[], subject=None, message="" ):
