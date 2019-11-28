@@ -64,7 +64,8 @@ def _send_simple_message(to_list=[], sender_email=None, subject=None, message=""
         from_email = sender_email 
     else:
         sender_email_name = "Masa Yana"
-        from_email = f"{sender_email_name} <postmaster@{MAILGUN_DOMAIN}>"
+        #from_email = f"{sender_email_name} <postmaster@{MAILGUN_DOMAIN}>"
+        from_email = f"{sender_email_name} <postmaster@ishinan.com>"
 
     # Recipients
     if len(to_list) > 0:
