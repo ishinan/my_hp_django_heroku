@@ -48,6 +48,8 @@ def contact_me(request):
 
         if response_of_sending_to_user.status_code == 200 and response_of_sending_to_me.status_code == 200:
             context['content'] = f"<p2 style='color: blue'>Done! The email is on the way!</h2>"
+        else:
+            context['content'] = f"<p2 style='color: read'>Sorry, my mail server failed.</h2>"
     
     return render(request, 'contact_me/contact.html', context)
 
