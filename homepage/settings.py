@@ -25,7 +25,7 @@ SECRET_KEY = 't4nk&g=^qgb%c_f%)3-nnz3=vzq=y)i#7k^ucg5x+vq-xr*))c'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['serene-wildwood-96755.herokuapp.com'] + ['localhost', '127.0.0.1', '[::1]']
+ALLOWED_HOSTS = ['masayana.herokuapp.com'] + ['localhost', '127.0.0.1', '[::1]']
 
 
 # Application definition
