@@ -57,7 +57,10 @@ Contact Me
         </div>
         </div>
     </div>
-</div>
 <div class="row main">
+    {% if content %}
+        {{ content|safe }}
+    {% endif %}
 </div> 
+</div>
 {% endblock %}

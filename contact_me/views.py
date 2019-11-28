@@ -24,6 +24,8 @@ def contact_me(request):
 
 
 def send_email(request):
+    copyright_year = _get_current_year()
+    context = {}
     if request.method == "POST":
         user_name = request.POST['name']
         user_email = request.POST['email']
@@ -49,8 +51,13 @@ def send_email(request):
         print(f"3. Mailgun: Status: {response_of_sending_to_user.status_code} ")
         print(f"4. Mailgun: Body: {response_of_sending_to_user.text} ")
 
-    return redirect("/contact-me")
-
+        if response_of_sending_to_user.status_code == 200 and response_of_sending_to_me.status_code == 200:
+            context = {
+                'content': f"<p2 style='color: blue'>Done! The email is on the way!</h2>",
+                'copyright_year': copyright_year, 
+            }
+    
+    return render(request, 'contact_me/contact.html', context)
 
 def _send_simple_message(to_list=[], sender_email=None, subject=None, message="" ):
     MAILGUN_API_KEY = os.getenv('MAILGUN_API_KEY')
