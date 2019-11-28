@@ -29,8 +29,8 @@ def contact_me(request):
 
         # 1. Send the message to me
         response_of_sending_to_me = _send_simple_message(message=user_message )
-        print(f"1. Mailgun: Status: {response_of_sending_to_me.status_code} ")
-        print(f"2. Mailgun: Body: {response_of_sending_to_me.text} ")
+        print(f"1.1 Mailgun: Status: {response_of_sending_to_me.status_code} ")
+        print(f"1.2 Mailgun: Body: {response_of_sending_to_me.text} ")
         print(f"-------------------------------")
 
         # 2. Send a thank-you message to the user
@@ -44,11 +44,14 @@ def contact_me(request):
         {my_name}
         """
         response_of_sending_to_user = _send_simple_message(to_list=user_name_email, message=message_to_user)
-        print(f"3. Mailgun: Status: {response_of_sending_to_user.status_code} ")
-        print(f"4. Mailgun: Body: {response_of_sending_to_user.text} ")
+        print(f"2.1 Mailgun: Status: {response_of_sending_to_user.status_code} ")
+        print(f"2.2 Mailgun: Body: {response_of_sending_to_user.text} ")
 
-        if response_of_sending_to_user.status_code == 200 and response_of_sending_to_me.status_code == 200:
-            context['content'] = f"<p2 style='color: blue'>Done! The email is on the way!</h2>"
+        if response_of_sending_to_user.status_code == 200: 
+            if response_of_sending_to_me.status_code == 200:
+                context['content'] = f"<p2 style='color: blue'>Thank you! The email is on the way!</h2>"
+            else:
+                context['content'] = f"<p2 style='color: green'>Done. But, you may not receive a confirmation emai. Sorry.</h2>"
         else:
             context['content'] = f"<p2 style='color: read'>Sorry, my mail server failed.</h2>"
     
