@@ -36,6 +36,7 @@ def contact_me(request):
         # 2. Send a thank-you message to the user
         my_name = os.getenv('MY_NAME') 
         message_to_user = f"""
+        --- No Reply to this email ---
         Thank you for sending a mesage to me, {user_name}! 
         Hope you have a great day!
 
@@ -64,8 +65,7 @@ def _send_simple_message(to_list=[], sender_email=None, subject=None, message=""
         from_email = sender_email 
     else:
         sender_email_name = "Masa Yana"
-        #from_email = f"{sender_email_name} <postmaster@{MAILGUN_DOMAIN}>"
-        from_email = f"{sender_email_name} <postmaster@ishinan.com>"
+        from_email = f"{sender_email_name} <mailgun@{MAILGUN_DOMAIN}>"
 
     # Recipients
     if len(to_list) > 0:
