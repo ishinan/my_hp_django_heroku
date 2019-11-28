@@ -14,18 +14,13 @@ active_page = 'contact_me:contact_me'
 def contact_me(request):
     copyright_year = _get_current_year()
     meta_data = {}
-    content, meta_data = _read_md_file('contact_me/content/contact.md')
+    _, meta_data = _read_md_file('contact_me/content/contact.md')
     context = { 
          'active_page': active_page,
          'copyright_year': copyright_year,
          'title': meta_data['title'][0],
         }
-    return render(request, 'contact_me/contact.html', context)
 
-
-def send_email(request):
-    copyright_year = _get_current_year()
-    context = {}
     if request.method == "POST":
         user_name = request.POST['name']
         user_email = request.POST['email']
@@ -52,12 +47,10 @@ def send_email(request):
         print(f"4. Mailgun: Body: {response_of_sending_to_user.text} ")
 
         if response_of_sending_to_user.status_code == 200 and response_of_sending_to_me.status_code == 200:
-            context = {
-                'content': f"<p2 style='color: blue'>Done! The email is on the way!</h2>",
-                'copyright_year': copyright_year, 
-            }
+            context['content'] = f"<p2 style='color: blue'>Done! The email is on the way!</h2>"
     
     return render(request, 'contact_me/contact.html', context)
+
 
 def _send_simple_message(to_list=[], sender_email=None, subject=None, message="" ):
     MAILGUN_API_KEY = os.getenv('MAILGUN_API_KEY')
