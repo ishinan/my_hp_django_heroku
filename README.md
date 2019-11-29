@@ -1,6 +1,6 @@
 # Django Own Homepage Project
 
-- This project is to port my_homepage generated from a static site generator to Django web framework.
+- This project is to port my static website([my_homepage](https://github.com/ishinan/my_homepage)) to Django web framework.
 - The lastest site is available at http://masayana.herokuapp.com in Heroku service
 
 ## Main pages
@@ -11,10 +11,10 @@
   - Summary of my project. Currently there is no real project displayed
 - **Blog** page
   - Summary of my blog. Currently there  is no real blog available
-    - Click a blog link to go to each blog page (Currently not linked)
-- **Github** Repo page
+  - Click a blog link to go to each blog page (Currently not linked)
+- **Github Repo** page
   - List my github public repo with its last updated date information
-- **Contact** Me page
+- **Contact Me** page
   - Sending email to me and send a confirmation to the sender
 
 ## Python Modules  
