@@ -12,6 +12,7 @@ requests = "*"
 jinja2 = "*"
 markdown = "*"
 python-dotenv = "*"
+django-jinja = "*"
 
 [requires]
 python_version = "3.7"
