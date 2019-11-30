@@ -1,7 +1,7 @@
 # Django Own Homepage Project
 
 - This project is to port my static website([my_homepage](https://github.com/ishinan/my_homepage)) to Django web framework.
-- The lastest site is available at http://masayana.herokuapp.com in Heroku service
+- The lastest site is available at [MasaYana's Heroku app](http://masayana.herokuapp.com) in Heroku service
 
 ## Main pages
 
@@ -23,7 +23,7 @@
 - Django web framework
   - This site is using django open source web framework
 - Jinja2 templating
-  - Instead of using Django template, I'm using Jinja2 tempalte. 
+  - Instead of using Django template, I'm using Jinja2 tempalte.
   - [Here](https://www.dyspatch.io/blog/python-templating-performance-showdown-django-vs-jinja/) is a link to an interesting article about the comparisen between the two python templates.
 - Markdown plain text markup language
   - Content files for blogs are using markdown format to include metadata
