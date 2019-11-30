@@ -4,6 +4,8 @@ import os
 import requests
 from dotenv import load_dotenv
 from homepage.settings import BASE_DIR
+from .forms import ContactMeForm
+
 
 load_dotenv(os.path.join(BASE_DIR, '.env'))
 
@@ -22,18 +24,29 @@ def contact_me(request):
         }
 
     if request.method == "POST":
+        form = ContactMeForm(request.POST)
+
+        # 1. Save it to the database
+        if form.is_valid():
+            form.save(commit=True)
+            print(f"1. Saved to database")
+            print(f"-------------------------------")
+
+        # 2. Send the message to me
         user_name = request.POST['name']
         user_email = request.POST['email']
         user_message = request.POST['message']
         user_name_email = [ f"{user_name} <{user_email}>" ]
-
-        # 1. Send the message to me
-        response_of_sending_to_me = _send_simple_message(message=user_message )
-        print(f"1.1 Mailgun: Status: {response_of_sending_to_me.status_code} ")
-        print(f"1.2 Mailgun: Body: {response_of_sending_to_me.text} ")
+        user_email_message = f"""
+        Sender: {user_name_email[0]}
+        Message: {user_message}
+        """
+        response_of_sending_to_me = _send_simple_message(message=user_email_message )
+        print(f"2.1 Mailgun: Status: {response_of_sending_to_me.status_code} ")
+        print(f"2.2 Mailgun: Body: {response_of_sending_to_me.text} ")
         print(f"-------------------------------")
 
-        # 2. Send a thank-you message to the user
+        # 3. Send a thank-you message to the user
         my_name = os.getenv('MY_NAME') 
         message_to_user = f"""
         --- No Reply to this email ---
@@ -44,8 +57,8 @@ def contact_me(request):
         {my_name}
         """
         response_of_sending_to_user = _send_simple_message(to_list=user_name_email, message=message_to_user)
-        print(f"2.1 Mailgun: Status: {response_of_sending_to_user.status_code} ")
-        print(f"2.2 Mailgun: Body: {response_of_sending_to_user.text} ")
+        print(f"3.1 Mailgun: Status: {response_of_sending_to_user.status_code} ")
+        print(f"3.2 Mailgun: Body: {response_of_sending_to_user.text} ")
 
         if response_of_sending_to_user.status_code == 200: 
             if response_of_sending_to_me.status_code == 200:
@@ -54,6 +67,9 @@ def contact_me(request):
                 context['content'] = f"<p2 style='color: green'>Done. But, you may not receive a confirmation emai. Sorry.</h2>"
         else:
             context['content'] = f"<p2 style='color: read'>Sorry, my mail server failed.</h2>"
+
+    form = ContactMeForm()
+    context['form'] = form
     
     return render(request, 'contact_me/contact.html', context)
 
